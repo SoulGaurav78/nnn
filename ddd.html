@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Date Proposal</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+      transition: background 0.5s ease;
+      overflow-x: hidden;
+    }
+    h1, h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      color: #fff;
+      background-color: #6c5ce7;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.8);
+    }
+    .popup {
+      display: none;
+      margin-top: 30px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      color: #333;
+      text-align: left;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+    .popup h2 {
+      color: #6c5ce7;
+      font-family: 'Dancing Script', cursive;
+    }
+    .popup p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .popup .signature {
+      margin-top: 15px;
+      font-style: italic;
+      text-align: right;
+    }
+    img {
+      margin-top: 20px;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    }
+    .hearts {
+      position: absolute;
+      top: -50px;
+      animation: float 5s infinite;
+      font-size: 1.5rem;
+      color: red;
+    }
+    @keyframes float {
+      0% {
+        transform: translateX(0) translateY(0);
+      }
+      50% {
+        transform: translateX(-20px) translateY(-100px);
+      }
+      100% {
+        transform: translateX(0) translateY(-200px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Ma'am, Are You Ready to Blow Your Mind?</h1>
+  <button onclick="nextStep(1)">Absolutely, Yes!</button>
+
+  <div class="popup" id="popup">
+    <h2></h2>
+    <p id="content"></p>
+    <button id="nextButton" onclick="nextStep(currentStep + 1)">Yes, I Am!</button>
+    <div id="heartsContainer"></div>
+  </div>
+
+  <script>
+    let currentStep = 0;
+    const heartsContainer = document.getElementById("heartsContainer");
+
+    function createHearts() {
+      for (let i = 0; i < 10; i++) {
+        const heart = document.createElement("div");
+        heart.className = "hearts";
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDelay = `${Math.random() * 5}s`;
+        heart.innerHTML = "❤️";
+        heartsContainer.appendChild(heart);
+      }
+    }
+
+    function nextStep(step) {
+      currentStep = step;
+      const popup = document.getElementById('popup');
+      const heading = document.querySelector('.popup h2');
+      const content = document.getElementById('content');
+      const body = document.body;
+
+      popup.style.display = 'block';
+      if (step === 1) {
+        heading.textContent = "Will You Go On a Date With Me?";
+        content.textContent = "A study date, to be precise. Think coffee, books, and perhaps a bit of playful procrastination. Shall we?";
+      } else if (step === 2) {
+        heading.textContent = "📢 Official Study Date Alert! 🎓";
+        content.innerHTML = `
+          Dear <strong>Future Wifee and the most beautiful upcoming student of Georgia Tech</strong>,<br><br>
+          The future Economist and the biggest fan of you invites you to the most memorable Study Date. This comes just before 50 days of the day when you were welcomed in this world. This also marks the end of the most beautiful ending of the year 2024.<br>
+          Your attendance is requested at the most prestigious *study date* of the year!<br>
+          <strong>Date:</strong> [13 December 2024]<br>
+          <strong>Time:</strong> [1:00 pm]<br>
+          <strong>Location:</strong> [Caffix- The Tech Cafe]<br>
+          <strong>Your personalised permanent driver will be there to pick you up.<br>
+          *Agenda:*<br>
+          - Study but with the addition of staring at you.<br>
+          - Devour at least a pizza and a drink.<br>
+          - Exchange witty banter and solve the universe's tiniest mysteries.<br><br>
+          Looking forward to making academic+romantic progress,<br>
+          Your Favorite (and only) Study Buddy! 🫶
+        `;
+        document.getElementById('nextButton').style.display = 'none';
+        body.style.background = "url('https://th.bing.com/th/id/OIP.8ePijzMKvKFeM_ulxNSRJQHaHa?w=160&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7') no-repeat center center fixed";
+        body.style.backgroundSize = "cover";
+        createHearts();
+      }
+    }
+  </script>
+</body>
+</html>
